@@ -18,7 +18,7 @@ The project demonstrates enterprise-level architecture, including the Repository
 - Dependency Injection
 - Repository Pattern
 - Fluent Validation
-- AutoMapper
+- ManualMapper
 
 ## Frontend
 
@@ -70,7 +70,7 @@ EP.TaskManager
 - Repository Pattern
 - REST APIs
 - Responsive UI
-- PostgreSQL Database
+- SQL Server Database
 
 ---
 
@@ -81,8 +81,8 @@ Install the following software before running the project.
 ## Backend
 
 - Visual Studio 2022
-- .NET SDK 9
-- PostgreSQL 16+
+- .NET SDK 10
+- SQL Server
 
 ## Frontend
 
@@ -104,25 +104,7 @@ cd EP.TaskManager
 # Database Setup
 
 ## Step 1
-
-Create a PostgreSQL database.
-
-Example
-
-```
-Database Name
-
-EP_TaskManager
-```
-
----
-
-## Step 2
-
-Update the connection string inside
-
-```
-EP.TaskManager.API/appsettings.json
+Set the ConnectionString in the appsettings.json file for .NET Core API
 ```
 
 Example
@@ -130,7 +112,7 @@ Example
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=5432;Database=EP_TaskManager;Username=postgres;Password=yourpassword"
+    "DefaultConnection": "Host=Server;Database=EP_TaskManager;Username=sa;Password=yourpassword,TrustCertificate=true"
   }
 }
 ```
@@ -141,7 +123,7 @@ Example
 
 Run Entity Framework migrations.
 
-Open Package Manager Console
+Open the Package Manager Console
 
 ```
 Update-Database
@@ -171,7 +153,7 @@ Set
 EP.TaskManager.API
 ```
 
-as Startup Project.
+as the Startup Project.
 
 Run
 
@@ -209,7 +191,7 @@ Install packages
 npm install
 ```
 
-Start development server
+Start the development server
 
 ```
 npm run dev
@@ -272,30 +254,6 @@ app.UseCors("Frontend");
 ```
 
 ---
-
-# API Endpoints
-
-## Projects
-
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/project |
-| GET | /api/project/{id} |
-| POST | /api/project |
-| PUT | /api/project |
-| DELETE | /api/project/{id} |
-
----
-
-## Tasks
-
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/task |
-| GET | /api/task/{id} |
-| POST | /api/task |
-| PUT | /api/task |
-| DELETE | /api/task/{id} |
 
 ---
 
@@ -378,15 +336,14 @@ npm run dev
 
 ---
 
-## PostgreSQL Connection Error
+## SQL Connection Error
 
 Verify
 
-- PostgreSQL is running
+- SQLServer is running
 - Username
 - Password
 - Database name
-- Port number
 
 ---
 
@@ -444,5 +401,5 @@ Database
 ---
 
 # Author
-
-Developed as a Clean Architecture sample project using ASP.NET Core, React, TypeScript, and PostgreSQL.
+Ehsan Raza
+Developed as a Clean Architecture sample project using ASP.NET Core, React, TypeScript, and SQL Server.
