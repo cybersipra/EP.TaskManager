@@ -1,1 +1,7 @@
-<Solution />
+<Solution>
+  <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.API/EP.TaskManager.API.csproj" />
+  <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.Application/EP.TaskManager.Application.csproj" />
+  <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.Domain/EP.TaskManager.Domain.csproj" />
+  <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.Infrastructure/EP.TaskManager.Infrastructure.csproj" />
+  <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.Test/EP.TaskManager.Test.csproj" />
+</Solution>
