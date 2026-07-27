@@ -1,5 +1,4 @@
 <Solution>
-  <Folder Name="/EP.TaskManager.FrontEnd/" />
   <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.API/EP.TaskManager.API.csproj" />
   <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.Application/EP.TaskManager.Application.csproj" />
   <Project Path="EP.TaskManager.BackEnd/EP.TaskManager.Domain/EP.TaskManager.Domain.csproj" />
