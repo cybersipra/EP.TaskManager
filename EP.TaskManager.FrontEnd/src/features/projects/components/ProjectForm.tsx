@@ -32,6 +32,7 @@ export default function ProjectForm({ project, onSubmit, isSubmitting = false }:
             return;
         }
         reset({
+            id: project.id,
             name: project.name,
             description: project.description,
         });
@@ -41,6 +42,7 @@ export default function ProjectForm({ project, onSubmit, isSubmitting = false }:
         console.log('ProjectForm handleFormSubmit', data);
         onSubmit({
             ...data,
+            id: data.id,
             name: data.name.trim(),
             description: data.description.trim(),
         });
