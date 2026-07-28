@@ -48,6 +48,7 @@ export default function ProjectSavePage() {
     const handleSubmit = async (model: SaveProjectRequest) => {
         const normalizedModel = {
             ...model,
+            id: model.id,
             name: model.name.trim(),
             description: model.description.trim(),
         };
