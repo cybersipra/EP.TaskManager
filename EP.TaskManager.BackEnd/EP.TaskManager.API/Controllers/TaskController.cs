@@ -1,4 +1,5 @@
-﻿using EP.TaskManager.Application.Tasks.DTOs;
+﻿using EP.TaskManager.Application.Projects.DTOs;
+using EP.TaskManager.Application.Tasks.DTOs;
 using EP.TaskManager.Application.Tasks.Interfaces;
 using EP.TaskManager.Domain.Tasks.Enums;
 using Microsoft.AspNetCore.Http;
@@ -64,9 +65,9 @@ namespace EP.TaskManager.API.Controllers
         }
 
         [HttpPatch("updatestatus/{id:int}")]
-        public async Task<IActionResult> UpdateStatus(int id, TaskItemStatus status, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateStatus(int id, UpdateTaskStatusDto statusDto, CancellationToken cancellationToken)
         {
-            var result = await _service.UpdateStatusAsync(id, status, cancellationToken);
+            var result = await _service.UpdateStatusAsync(id, statusDto.Status, cancellationToken);
 
             if (!result.Success) return BadRequest(result);
 

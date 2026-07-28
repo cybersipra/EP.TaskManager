@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EP.TaskManager.Domain.Tasks.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,4 +19,9 @@ namespace EP.TaskManager.Application.Projects.DTOs
         public string Name { get; set; }
         public string? Description { get; set; }
     }
+    public class UpdateTaskStatusDto
+    {
+        public TaskItemStatus Status { get; set; }
+    }
+
 }
