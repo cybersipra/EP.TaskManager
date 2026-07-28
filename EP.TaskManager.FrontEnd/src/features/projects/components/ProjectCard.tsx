@@ -1,4 +1,3 @@
-
 import type { Project } from '../types/Project';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,52 +14,27 @@ interface Props {
     onDelete: (id: number) => void;
 }
 
-export default function ProjectCard({
-    project,
-    onEdit,
-    onDelete,
-}: Props) {
+export default function ProjectCard({ project, onEdit, onDelete }: Props) {
     const navigate = useNavigate();
 
     return (
         <Card className="h-100">
-
             <div className="d-flex flex-column h-100">
-
                 <div className="d-flex justify-content-between align-items-start gap-2">
+                    <h5 className="mb-2 fw-semibold">{project.name}</h5>
 
-                    <h5 className="mb-2 fw-semibold">
-                        {project.name}
-                    </h5>
-
-                    <span className="badge bg-primary-subtle text-primary">
-                        Active
-                    </span>
-
+                    <span className="badge bg-primary-subtle text-primary">Active</span>
                 </div>
 
-
-                <p className="text-muted flex-grow-1">
-                    {project.description}
-                </p>
-
+                <p className="text-muted flex-grow-1">{project.description}</p>
 
                 <div className="small text-muted mt-3">
+                    <div>Created: {new Date(project.createdAt).toLocaleDateString()}</div>
 
-                    <div>
-                        Created: {new Date(project.createdAt).toLocaleDateString()}
-                    </div>
-
-                    <div>
-                        Updated: {new Date(project.updatedAt).toLocaleDateString()}
-                    </div>
-
+                    <div>Updated: {new Date(project.updatedAt).toLocaleDateString()}</div>
                 </div>
 
-
                 <div className="mt-3 d-flex flex-wrap gap-2">
-
-
                     <Button
                         text={
                             <span className="d-flex align-items-center gap-1">
@@ -71,7 +45,6 @@ export default function ProjectCard({
                         variant="warning"
                         onClick={() => onEdit(project)}
                     />
-
 
                     <Button
                         text={
@@ -84,7 +57,6 @@ export default function ProjectCard({
                         onClick={() => onDelete(project.id)}
                     />
 
-
                     <Button
                         text={
                             <span className="d-flex align-items-center gap-1">
@@ -95,11 +67,8 @@ export default function ProjectCard({
                         variant="primary"
                         onClick={() => navigate(`/projects/${project.id}`)}
                     />
-
                 </div>
-
             </div>
-
         </Card>
     );
 }

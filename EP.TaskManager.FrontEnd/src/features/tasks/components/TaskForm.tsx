@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { FiPlusCircle, FiSave } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 
@@ -44,27 +44,23 @@ export default function TaskForm({
 
         formState: { errors },
     } = useForm<SaveTaskRequest>();
-     
-    const hasInitialized = useRef(false);
-    
-        useEffect(() => {
-            if (!task || hasInitialized.current) {
-                return;
-            }
-    
-            hasInitialized.current = true;
-            reset({
-                title: task?.title ?? '',
 
-                description: task?.description ?? '',
+    useEffect(() => {
+        if (!task) {
+            return;
+        }
+        reset({
+            title: task?.title ?? '',
 
-                dueDate: task ? task.dueDate.substring(0, 10) : '',
+            description: task?.description ?? '',
 
-                projectId: projectId,
+            dueDate: task ? task.dueDate.substring(0, 10) : '',
 
-                status: task?.status ?? TaskStatus.ToDo,
-            });
-        }, [task, projectId, reset]);
+            projectId: projectId,
+
+            status: task?.status ?? TaskStatus.ToDo,
+        });
+    }, [task, projectId, reset]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

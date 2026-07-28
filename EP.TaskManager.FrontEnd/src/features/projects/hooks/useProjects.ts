@@ -43,7 +43,6 @@ export default function useProjects() {
         }
     }, []);
 
-
     const addProject = async (model: SaveProjectRequest) => {
         try {
             const response = await createProject(model);

@@ -101,9 +101,7 @@ export default function TaskSavePage() {
                                 {project?.name ?? 'Project'}
                             </h5>
 
-                            <p className="text-muted mb-0">
-                                Manage task details for this project.
-                            </p>
+                            <p className="text-muted mb-0">Manage task details for this project.</p>
                         </div>
                         <TaskForm
                             task={task}
