@@ -94,7 +94,7 @@ Install the following software before running the project.
 # Clone Repository
 
 ```
-git clone https://github.com/yourusername/EP.TaskManager.git
+git clone https://github.com/cybersipra/EP.TaskManager.git
 
 cd EP.TaskManager
 ```
@@ -112,14 +112,14 @@ Example
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=Server;Database=EP_TaskManager;Username=sa;Password=yourpassword,TrustCertificate=true"
+    "DefaultConnection": "Server=localhost;Database=EP_TaskManager;User Id=sa;Password=yourpassword;TrustServerCertificate=True;"
   }
 }
 ```
 
 ---
 
-## Step 3
+## Step 2
 
 Run Entity Framework migrations.
 
@@ -386,20 +386,246 @@ npm run preview
 # Architecture
 
 ```
-Presentation
-      │
-      ▼
-Application
-      │
-      ▼
-Infrastructure
-      │
-      ▼
-Database
-```
+
+                Client (React)
+                      │
+                      ▼
+          ASP.NET Core Web API
+                      │
+                      ▼
+          Application Layer
+                      │
+                      ▼
+            Domain Layer
+                      │
+                      ▼
+        Infrastructure Layer
+                      │
+                      ▼
+               SQL Server
+
+---
+---
+
+# Technical Decisions & Design Choices
+
+## 1. Frontend and Backend Separation
+
+Two architectural approaches were considered during development:
+
+### Option 1
+- React frontend hosted inside the ASP.NET Core project.
+
+### Option 2 (Chosen)
+- ASP.NET Core Web API as an independent backend project.
+- React application as a standalone frontend project.
+- Both projects maintained within the same solution directory and Git repository.
+
+### Why this approach?
+
+This architecture provides several advantages:
+
+- Independent development of frontend and backend.
+- Frontend can be developed using Visual Studio Code.
+- Backend can be developed using Visual Studio.
+- Independent build and deployment pipelines.
+- Easier maintenance and debugging.
+- Frontend can later be replaced (Angular, Vue, Mobile App, etc.) without changing the backend.
+- Backend APIs can be consumed by multiple clients such as Web, Mobile, Desktop, or third-party applications.
+- Both projects remain organized inside a single repository for easier project management.
 
 ---
 
+## 2. Latest Stable Technology Stack
+
+The project was built using the latest stable technologies available during development.
+
+### Backend
+
+- .NET 10
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
+
+### Frontend
+
+- React 19
+- TypeScript
+- Vite
+
+Using the latest stable framework versions provides:
+
+- Long-term Microsoft support (.NET LTS)
+- Better performance
+- Improved security
+- Modern language features
+- Easier future maintenance
+
+---
+
+## 3. Feature-Oriented Modular Architecture
+
+The backend follows **Clean Architecture** with clear separation of responsibilities.
+
+```
+API
+│
+├── Domain
+│
+├── Application
+│
+└── Infrastructure
+```
+
+Within the Application and Domain layers, the solution is organized by business modules.
+
+Example:
+
+```
+Application
+│
+├── Projects
+│     ├── DTOs
+│     ├── Interfaces
+│     ├── Services
+│     └── Validators
+│
+└── Tasks
+      ├── DTOs
+      ├── Interfaces
+      ├── Services
+      └── Validators
+```
+
+This modular structure keeps each feature isolated and easier to maintain.
+
+---
+
+## 4. Microservice Ready Design
+
+Although this project is implemented as a Modular Monolith, each business feature is isolated from the others.
+
+For example:
+
+- Project module
+- Task module
+
+Each module contains its own:
+
+- DTOs
+- Services
+- Validators
+- Business Logic
+- Repository Interfaces
+
+If the application grows in the future, these modules can be extracted into independent microservices with minimal refactoring.
+
+---
+
+## 5. Reusable Frontend Architecture
+
+The React application was designed using reusable components instead of duplicating UI code.
+
+Reusable components include:
+
+- Button
+- Input
+- TextArea
+- Modal
+- Card
+- Loader
+- Page Header
+- Confirmation Dialog
+- Toast Notifications
+
+These shared components are used throughout both the Project and Task modules.
+
+Benefits include:
+
+- Less duplicated code
+- Easier maintenance
+- Consistent UI
+- Faster development
+
+---
+
+## 6. Centralized API Communication
+
+A reusable API layer was implemented for all HTTP communication.
+
+The frontend includes:
+
+- Axios Client
+- Request/Response Interceptors
+- Environment-based API configuration
+
+This approach avoids repetitive API code and simplifies future module development.
+
+---
+
+## 7. Scalable Folder Structure
+
+Both frontend and backend follow a feature-based folder structure instead of organizing files solely by type.
+
+Example:
+
+```
+features
+│
+├── projects
+│
+└── tasks
+```
+
+Each feature contains its own:
+
+- Components
+- Pages
+- Hooks
+- Types
+- API Integration
+
+This makes it easier to add new modules without affecting existing functionality.
+
+---
+
+## 8. Deployment
+
+Both the frontend and backend have been deployed on a personal development environment using a personal domain for demonstration and testing purposes.
+
+Deployment includes:
+
+- ASP.NET Core Web API
+- React Production Build
+- SQL Server Database
+
+The deployed application has been tested to validate:
+
+- CRUD operations
+- API communication
+- Routing
+- Validation
+- Production deployment
+
+The deployment URL and demonstration video are shared separately for review.
+
+---
+
+## 9. Testing
+
+The application was tested before submission to verify:
+
+- Project CRUD operations
+- Task CRUD operations
+- Form validation
+- API responses
+- Error handling
+- Navigation
+- Production deployment
+
+Testing was also performed by an independent tester to validate the application's functionality before submission.
+
+---
 # Author
 Ehsan Raza
 Developed as a Clean Architecture sample project using ASP.NET Core, React, TypeScript, and SQL Server.
