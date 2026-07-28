@@ -46,7 +46,6 @@ export default function useTasks(projectId: number) {
             } else {
                 toast.error(response.message);
             }
-
         } catch {
             setError('Unable to load tasks.');
         } finally {
@@ -64,7 +63,7 @@ export default function useTasks(projectId: number) {
 
     const addTask = async (model: SaveTaskRequest) => {
         try {
-            const response =await createTask(model);
+            const response = await createTask(model);
             if (response.success) {
                 toast.success(response.message);
                 await refreshTasks();

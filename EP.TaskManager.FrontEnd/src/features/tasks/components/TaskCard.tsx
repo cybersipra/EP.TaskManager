@@ -16,12 +16,7 @@ interface Props {
     onStatusChange: (id: number, status: TaskStatus) => void;
 }
 
-export default function TaskCard({
-    task,
-    onEdit,
-    onDelete,
-    onStatusChange,
-}: Props) {
+export default function TaskCard({ task, onEdit, onDelete, onStatusChange }: Props) {
     return (
         <Card className="h-100">
             <div className="d-flex justify-content-between align-items-start gap-2">

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiPlusCircle, FiSave } from 'react-icons/fi';
 import Input from '../../../common/components/Input/Input';
@@ -14,11 +14,7 @@ interface Props {
     isSubmitting?: boolean;
 }
 
-export default function ProjectForm({
-    project,
-    onSubmit,
-    isSubmitting = false,
-}: Props) {
+export default function ProjectForm({ project, onSubmit, isSubmitting = false }: Props) {
     const {
         register,
         handleSubmit,
@@ -31,15 +27,10 @@ export default function ProjectForm({
         },
     });
 
-    const hasInitialized = useRef(false);
-
     useEffect(() => {
-        if (!project || hasInitialized.current) {
+        if (!project) {
             return;
         }
-
-        hasInitialized.current = true;
-
         reset({
             name: project.name,
             description: project.description,
@@ -63,7 +54,8 @@ export default function ProjectForm({
                 placeholder="Enter project name"
                 {...register('name', {
                     required: 'Project name is required',
-                    setValueAs: (value: unknown) => (typeof value === 'string' ? value.trim() : value),
+                    setValueAs: (value: unknown) =>
+                        typeof value === 'string' ? value.trim() : value,
                 })}
                 error={errors.name?.message}
             />
@@ -74,7 +66,8 @@ export default function ProjectForm({
                 rows={4}
                 {...register('description', {
                     required: 'Description is required',
-                    setValueAs: (value: unknown) => (typeof value === 'string' ? value.trim() : value),
+                    setValueAs: (value: unknown) =>
+                        typeof value === 'string' ? value.trim() : value,
                 })}
                 error={errors.description?.message}
             />

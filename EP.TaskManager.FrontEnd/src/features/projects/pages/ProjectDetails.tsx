@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import {
-    FiClipboard,
-    FiFileText,
-    FiPlus,
-} from 'react-icons/fi';
+import { FiClipboard, FiFileText, FiPlus } from 'react-icons/fi';
 
 import PageHeader from '../../../common/components/PageHeader/PageHeader';
 import Loader from '../../../common/components/Loader/Loader';
@@ -26,13 +22,7 @@ export default function ProjectDetails() {
 
     const projectId = Number(id);
 
-    const {
-        tasks,
-        loading,
-        error,
-        removeTask,
-        changeStatus,
-    } = useTasks(projectId);
+    const { tasks, loading, error, removeTask, changeStatus } = useTasks(projectId);
 
     const [project, setProject] = useState<Project>();
     const [deleteId, setDeleteId] = useState<number>();
@@ -61,7 +51,6 @@ export default function ProjectDetails() {
 
     return (
         <div className="page-surface p-4 p-lg-5">
-
             <PageHeader
                 title={
                     <span className="d-flex align-items-center gap-2">
@@ -75,9 +64,7 @@ export default function ProjectDetails() {
                         New Task
                     </span>
                 }
-                onButtonClick={() =>
-                    navigate(`/projects/${projectId}/tasks/save`)
-                }
+                onButtonClick={() => navigate(`/projects/${projectId}/tasks/save`)}
             />
 
             <ErrorAlert message={error} />
@@ -85,22 +72,16 @@ export default function ProjectDetails() {
             {/* Project Information */}
             <div className="card border-0 shadow-sm mb-4">
                 <div className="card-body">
-
                     <h5 className="fw-semibold d-flex align-items-center gap-2 mb-3">
                         <FiFileText />
                         Project Description
                     </h5>
 
-                    <p className="text-muted mb-4">
-                        {project.description}
-                    </p>
+                    <p className="text-muted mb-4">{project.description}</p>
 
                     <div className="row">
-
                         <div className="col-md-6">
-                            <small className="text-muted">
-                                Created
-                            </small>
+                            <small className="text-muted">Created</small>
 
                             <div className="fw-semibold">
                                 {new Date(project.createdAt).toLocaleDateString()}
@@ -108,17 +89,13 @@ export default function ProjectDetails() {
                         </div>
 
                         <div className="col-md-6">
-                            <small className="text-muted">
-                                Updated
-                            </small>
+                            <small className="text-muted">Updated</small>
 
                             <div className="fw-semibold">
                                 {new Date(project.updatedAt).toLocaleDateString()}
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
 
@@ -131,9 +108,7 @@ export default function ProjectDetails() {
                     action={
                         <button
                             className="btn btn-primary d-flex align-items-center gap-2 mx-auto"
-                            onClick={() =>
-                                navigate(`/projects/${projectId}/tasks/save`)
-                            }
+                            onClick={() => navigate(`/projects/${projectId}/tasks/save`)}
                         >
                             <FiPlus />
                             Add Task
@@ -143,20 +118,13 @@ export default function ProjectDetails() {
             ) : (
                 <div className="row g-3">
                     {tasks.map((task) => (
-                        <div
-                            key={task.id}
-                            className="col-lg-4 col-md-6"
-                        >
+                        <div key={task.id} className="col-lg-4 col-md-6">
                             <TaskCard
                                 task={task}
                                 onEdit={(selectedTask) =>
-                                    navigate(
-                                        `/projects/${projectId}/tasks/save/${selectedTask.id}`,
-                                    )
+                                    navigate(`/projects/${projectId}/tasks/save/${selectedTask.id}`)
                                 }
-                                onDelete={(taskId) =>
-                                    setDeleteId(taskId)
-                                }
+                                onDelete={(taskId) => setDeleteId(taskId)}
                                 onStatusChange={changeStatus}
                             />
                         </div>
@@ -177,7 +145,6 @@ export default function ProjectDetails() {
                     setDeleteId(undefined);
                 }}
             />
-
         </div>
     );
 }
